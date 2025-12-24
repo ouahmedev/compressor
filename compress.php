@@ -49,20 +49,24 @@ switch ($mime) {
         die("صيغة الصورة غير مدعومة.");
 }
 
-// اسم فريد للملف
+// توليد اسم فريد للملف
 $uniqueName = 'img_' . uniqid() . '.' . $format;
 $outputPath = $uploadDir . $uniqueName;
+
+// **تحسين الضغط**: الجودة 50–60
+$jpegQuality = 60;  // JPEG و WEBP
+$pngCompression = 6; // PNG: 0–9 (أعلى=أبطأ وأصغر)
 
 // التحويل والضغط
 switch ($format) {
     case 'jpg':
-        imagejpeg($img, $outputPath, 75);
+        imagejpeg($img, $outputPath, $jpegQuality);
         break;
     case 'png':
-        imagepng($img, $outputPath, 6);
+        imagepng($img, $outputPath, $pngCompression);
         break;
     case 'webp':
-        imagewebp($img, $outputPath, 75);
+        imagewebp($img, $outputPath, $jpegQuality);
         break;
     default:
         imagedestroy($img);
@@ -75,7 +79,6 @@ imagedestroy($img);
 $originalSize = filesize($tmpName);
 $compressedSize = filesize($outputPath);
 
-// تحويل الحجم إلى صيغة مقروءة
 function formatSize($bytes) {
     if ($bytes >= 1048576) return round($bytes / 1048576, 2) . " MB";
     if ($bytes >= 1024) return round($bytes / 1024, 2) . " KB";
