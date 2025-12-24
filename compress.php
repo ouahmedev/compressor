@@ -71,7 +71,23 @@ switch ($format) {
 
 imagedestroy($img);
 
-// صفحة النتيجة
-echo "<h2>✅ تم ضغط وتحويل الصورة بنجاح</h2>";
-echo "<p>سيتم حذف الصورة تلقائيًا بعد 15 دقيقة.</p>";
-echo "<a href='$outputPath' download>⬇️ تحميل الصورة</a>";
+// حساب حجم الملفات
+$originalSize = filesize($tmpName);
+$compressedSize = filesize($outputPath);
+
+// تحويل الحجم إلى صيغة مقروءة
+function formatSize($bytes) {
+    if ($bytes >= 1048576) return round($bytes / 1048576, 2) . " MB";
+    if ($bytes >= 1024) return round($bytes / 1024, 2) . " KB";
+    return $bytes . " B";
+}
+
+// صفحة النتيجة مع UX محسّن
+echo "<div style='text-align:center; font-family:Arial;'>";
+echo "<h2>✅ تم ضغط وتحويل الصورة بنجاح!</h2>";
+echo "<p>حجم الصورة الأصلي: <strong>" . formatSize($originalSize) . "</strong></p>";
+echo "<p>حجم الصورة بعد الضغط: <strong>" . formatSize($compressedSize) . "</strong></p>";
+echo "<p>الملف سيبقى متاحًا لمدة: 15 دقيقة</p>";
+echo "<a href='$outputPath' download style='display:inline-block;margin:10px;padding:10px 20px;background:#28a745;color:white;text-decoration:none;border-radius:5px;'>⬇️ تحميل الصورة</a><br>";
+echo "<a href='index.php' style='display:inline-block;margin:10px;padding:10px 20px;background:#0073e6;color:white;text-decoration:none;border-radius:5px;'>🔄 رفع صورة أخرى</a>";
+echo "</div>";
