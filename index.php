@@ -9,9 +9,11 @@
     <div class="container">
         <h1>ضغط وتحويل الصور</h1>
         <form action="compress.php" method="post" enctype="multipart/form-data">
-            <label>اختر صورة للضغط والتحويل:</label>
-            <input type="file" name="image" accept="image/png, image/jpeg, image/webp" required>
+            <!--<label>اختر صورة للضغط والتحويل:</label>-->
             <label>اختر صيغة التحويل:</label>
+            <input type="file" name="image" accept="image/png, image/jpeg, image/webp" required>
+            <!--<label>اختر صيغة التحويل:</label>-->
+            <label>اختر صورة للضغط والتحويل:</label>
             <select name="format">
                 <option value="jpg">JPG</option>
                 <option value="png">PNG</option>
