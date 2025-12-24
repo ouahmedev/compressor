@@ -34,7 +34,7 @@ $outputPath = $uploadDir . $uniqueName;
 // معالجة الصورة
 if($transparent){
     // إرسال الصورة إلى Remove.bg API
-    $apiKey = "YOUR_API_KEY_HERE"; // ضع مفتاحك هنا
+    $apiKey = "Uv7DaqXrXasKXrRBAY8hVLc9"; // ضع مفتاحك هنا
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://api.remove.bg/v1.0/removebg");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
